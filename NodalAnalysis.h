@@ -107,12 +107,6 @@ inline std::vector<cplx> NodalAnalyzer::gaussSolve(std::vector<std::vector<cplx>
 
 inline AnalysisResult NodalAnalyzer::solve(double frequency)const{
     if(!std::isfinite(frequency)||frequency<0.0)throw std::invalid_argument("Frequency must be a finite number >= 0");
-    auto problems=circuit.validate();
-    if(!problems.empty()){
-        std::string msg="Circuit is not valid:";
-        for(const auto&p:problems)msg+="\n  - "+p;
-        throw std::runtime_error(msg);
-    }
     if(!circuit.hasSource())throw std::runtime_error("Circuit has no source - nothing drives it");
 
     std::vector<Element> elems;
