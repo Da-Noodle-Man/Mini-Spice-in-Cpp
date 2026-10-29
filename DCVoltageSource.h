@@ -10,8 +10,6 @@ private:
 public:
     DCVoltageSource(string n, int a, int b, double v)
         : VoltageSource(move(n), a, b), voltage(v) {
-        if (!isfinite(v))
-            throw invalid_argument("DC voltage must be a finite number");
     }
 
     double getValue() const override { return voltage; }
